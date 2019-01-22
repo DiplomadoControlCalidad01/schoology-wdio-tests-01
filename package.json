@@ -1,0 +1,25 @@
+{
+  "name": "schoology-wdio-tests-01",
+  "version": "1.0.0",
+  "description": "Automation project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiplomadoControlCalidad01/schoology-wdio-tests-01.git"
+  },
+  "author": "Jimmy, Maria, Cristelh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DiplomadoControlCalidad01/schoology-wdio-tests-01/issues"
+  },
+  "homepage": "https://github.com/DiplomadoControlCalidad01/schoology-wdio-tests-01#readme",
+  "devDependencies": {
+    "wdio-mocha-framework": "^0.6.4",
+    "wdio-selenium-standalone-service": "0.0.12",
+    "wdio-spec-reporter": "^0.1.5",
+    "webdriverio": "^4.14.2"
+  }
+}
