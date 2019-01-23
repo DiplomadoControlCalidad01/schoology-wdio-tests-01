@@ -15,15 +15,5 @@ class Header {
                 return new Courses();
         }
     }
-
-    clickCourses(){
-        return new Courses();
-    }
-
-    clickGroups(){
-        return new Gr();
-    }
-
-
 }
 module.exports = Header;
