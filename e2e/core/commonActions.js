@@ -12,5 +12,10 @@ class CommonActions{
     static waitForVisible(locator) {
         browser.waitForVisible(locator, 30000)
     }
+
+    static selectValue(locator, value){
+        this.waitForVisible(locator);
+        browser.element(locator).selectByValue(value);
+    }
 }
 module.exports = CommonActions;
