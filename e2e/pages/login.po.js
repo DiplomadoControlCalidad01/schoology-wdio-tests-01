@@ -10,7 +10,7 @@ class Login {
         CommonActions.setValue('#edit-pass', password);
     }
 
-    clickLoginbuttonn() {
+    clickLoginButton() {
         CommonActions.click('#edit-submit');
     }
 
@@ -19,7 +19,7 @@ class Login {
         CommonActions.waitForVisible('#login-container');
         login.setUserNameTextField(userName);
         login.setPasswordTextField(password);
-        login.clickLoginbuttonn();
+        login.clickLoginButton();
         return new Header();
     }
 }
