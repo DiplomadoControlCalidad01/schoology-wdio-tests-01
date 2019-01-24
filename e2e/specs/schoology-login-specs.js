@@ -9,7 +9,7 @@ describe('webdriver.io page', () => {
         let header = Login.loginAs(credentials.instructor.username, credentials.instructor.password);
         let resources = header.navigateTo('Resources');
 
-        resources.agregarRecurso('Agregar Carpeta');
+        resources.addResource('Add Folder');
         browser.pause(10000);
     });
 });
