@@ -1,16 +1,16 @@
 class CommonActions{
+    static waitForVisible(locator) {
+        browser.waitForVisible(locator, 30000)
+    }
+
     static setValue(locator, value) {
-        browser.waitForVisible(locator, 30000);
+        this.waitForVisible(locator);
         browser.element(locator).setValue(value);
     }
 
     static click(locator) {
-        browser.waitForVisible(locator, 30000);
+        this.waitForVisible(locator);
         browser.element(locator).click();
-    }
-
-    static waitForVisible(locator) {
-        browser.waitForVisible(locator, 30000)
     }
 
     static selectValue(locator, value){
