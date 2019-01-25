@@ -22,5 +22,10 @@ class Login {
         login.clickLoginButton();
         return new Header();
     }
+
+    static loginAs(userName, password, url) {
+        browser.url(url);
+        loginAs(userName, password);
+    }
 }
 module.exports = Login;
