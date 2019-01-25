@@ -4,9 +4,9 @@ const Login = require('../pages/login.po');
 
 describe('Groups', () => {
     it('Create Group', () => {
-        browser.url('https://app.schoology.com/login');
+        browser.url(credentials.url);
 
-        let header = Login.loginAs(credentials.instructor.username, credentials.instructor.password);
+        let header = Login.loginAs(credentials.teacher.username, credentials.teacher.password);
         let groups = header.navigateTo('Groups');
 
         let groupForm = groups.createFirstGroup();
