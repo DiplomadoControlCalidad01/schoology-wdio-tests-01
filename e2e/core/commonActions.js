@@ -2,7 +2,7 @@ const env = require('../../environment');
 
 class CommonActions{
     static waitForVisible(locator) {
-        browser.waitForVisible(locator, 30000)
+        browser.waitForVisible(locator, env.timeout.explicit)
     }
 
     static setValue(locator, value) {
