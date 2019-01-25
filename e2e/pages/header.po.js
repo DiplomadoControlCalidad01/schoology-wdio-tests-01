@@ -1,6 +1,6 @@
-const CommonActions = require('../core/CommonActions');
+const CommonActions = require('../core/commonActions');
 const Resources = require('../pages/resources.po');
-const Groups = require('../pages/groups.po');
+const GroupsPreview = require('./groupsPreview.po');
 const Courses = require('../pages/courses.po');
 
 class Header {
@@ -10,7 +10,7 @@ class Header {
             case 'Resources':
                 return new Resources();
             case 'Groups':
-                return new Groups();
+                return new GroupsPreview();
             case 'Courses':
                 return new Courses();
         }

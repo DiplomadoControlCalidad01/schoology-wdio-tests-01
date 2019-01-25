@@ -4,7 +4,7 @@
   "description": "Automation project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "wdio"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,6 @@
     "wdio-selenium-standalone-service": "0.0.12",
     "wdio-spec-reporter": "^0.1.5",
     "webdriverio": "^4.14.2"
-  }
+  },
+  "dependencies": {}
 }
