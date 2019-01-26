@@ -1,4 +1,4 @@
-const CommonActions = require('../core/CommonActions');
+const CommonActions = require('../core/commonActions');
 const Header = require('../pages/header.po');
 
 class Login {
