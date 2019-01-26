@@ -1,4 +1,4 @@
-const CommonActions = require('../core/CommonActions');
+const CommonActions = require('../core/commonActions');
 
 class Resources {
     addResource(resourceName) {
