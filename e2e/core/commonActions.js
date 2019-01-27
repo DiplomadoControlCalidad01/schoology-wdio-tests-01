@@ -17,7 +17,12 @@ class CommonActions{
 
     static selectValue(locator, value){
         this.waitForVisible(locator);
-        browser.element(locator).selectByValue(value);
+        browser.element(locator).selectByVisibleText(value);
+    }
+
+    static getText(locator){
+        this.waitForVisible(locator);
+        return browser.element(locator).getText();
     }
 }
 module.exports = CommonActions;
