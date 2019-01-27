@@ -1,0 +1,20 @@
+{
+  "credentials" : {
+    "teacher" : {
+      "username" : "",
+      "password" : ""
+    },
+    "student" : {
+      "username" : "",
+      "password" : ""
+    },
+    "parent" : {
+      "username" : "",
+      "password" : ""
+    }
+  },
+  "url": "https://app.schoology.com/login",
+    "timeout": {
+      "explicit" : 30000
+    }
+}
