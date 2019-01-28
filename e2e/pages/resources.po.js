@@ -1,7 +1,7 @@
 const CommonActions = require('../core/commonActions');
 
 class Resources {
-    addResource() {
+    clickAddResourceButton() {
         CommonActions.click('#toolbar-add');
     }
 
@@ -9,12 +9,12 @@ class Resources {
         return CommonActions.getText(`.message-text`);
     }
 
-    clickCreate(){
+    clickCreateButton(){
         return CommonActions.click(`input[value='Create']`);
     }
 
     addFolder(folder){
-        this.addResource()
+        this.clickAddResourceButton()
         CommonActions.click('#collection-add-folder a');
 
         let folderSteps = {
@@ -27,7 +27,7 @@ class Resources {
             folderSteps[key].call();
         });
 
-        this.clickCreate();
+        this.clickCreateButton();
         return this;
     }
 }
