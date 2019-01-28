@@ -1,26 +1,22 @@
 const CommonActions = require('../core/commonActions');
 
 class Resources {
-    addResource(resourceName) {
+    addResource() {
         CommonActions.click('#toolbar-add');
-        CommonActions.click('#collection-add-folder a');
-        //Should return new instance of resourceName sent
     }
 
-    constructor() {
-        //this.sdsd = `sd`;
+    getToolbarMessage(){
+        return CommonActions.getText(`.message-text`);
     }
 
     clickCreate(){
-
-    }
-
-    clickCancel()
-    {
-
+        return CommonActions.click(`input[value='Create']`);
     }
 
     addFolder(folder){
+        this.addResource()
+        CommonActions.click('#collection-add-folder a');
+
         let folderSteps = {
             'Name': () => CommonActions.setValue("#edit-title", folder.Name),
             'FolderColor': () => CommonActions.setValue("sd", folder.FolderColor),
@@ -32,6 +28,7 @@ class Resources {
         });
 
         this.clickCreate();
+        return this;
     }
 }
 module.exports = Resources;
