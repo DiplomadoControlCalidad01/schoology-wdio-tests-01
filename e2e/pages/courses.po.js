@@ -1,41 +1,34 @@
-const CommonActions = require('../core/CommonActions');
+const CommonActions = require('../core/commonActions');
+const CourseDashboard = require('./courseDashboard.po');
 
 class Courses {
 
-    constructor() {
-        this.courseNameTextField = 'input#edit-course-name';
-        this.sectionNameTextField = 'input#edit-section-name-1';
-        this.subjectAreaSelectField = 'select#edit-subject-area';
-        this.levelSelectField = 'select#edit-grade-level-range-start';
-        this.createButton = 'input#edit-submit';
-        this.cancelButton = `//a[text()='Cancel']`;
-        this.createCourseButton = `//a[text()='Create Course']`;
-    }
-
     clickCreateCourseButton(){
-        CommonActions.click(this.createCourseButton);
+        CommonActions.click(`//a[text()='Create Course']`);
+        return this;
     }
 
     clickCreateButton(){
-        CommonActions.click(this.createButton);
+        CommonActions.click('input#edit-submit');
+        return new CourseDashboard();
     }
 
     clickCancelButton(){
-        CommonActions.click(this.cancelButton);
+        CommonActions.click(`//a[text()='Cancel']`);
+        return this;
     }
 
-    createCourse(course){
+    fillCreateCourseForm(course){
         let courseSteps = {
-            'CourseName': () => CommonActions.setValue(this.courseNameTextField, course.CourseName),
-            'SectionName': () => CommonActions.setValue(this.sectionNameTextField, course.SectionName),
-            'SubjectArea': () => CommonActions.selectValue(this.subjectAreaSelectField, course.SubjectArea),
-            'Level': () => CommonActions.selectValue(this.levelSelectField, course.Level)
+            'CourseName': () => CommonActions.setValue('input#edit-course-name', course.CourseName),
+            'SectionName': () => CommonActions.setValue('input#edit-section-name-1', course.SectionName),
+            'SubjectArea': () => CommonActions.selectValue('select#edit-subject-area', course.SubjectArea),
+            'Level': () => CommonActions.selectValue('select#edit-grade-level-range-start', course.Level)
         };
         Object.keys(course).forEach(key => {
             courseSteps[key].call();
         });
-
-        this.clickCreateButton();
+        return this;
     }
 }
 

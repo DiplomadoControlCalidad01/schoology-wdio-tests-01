@@ -12,8 +12,13 @@ class Header {
             case 'Groups':
                 return new GroupsPreview();
             case 'Courses':
+                this.clickMyCoursesLink();
                 return new Courses();
         }
+    }
+
+    clickMyCoursesLink(){
+        CommonActions.click(`a[href='/courses']`);
     }
 }
 module.exports = Header;
