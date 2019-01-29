@@ -3,8 +3,7 @@ const Login = require('../pages/login.po');
 const Header = require('../pages/header.po');
 const expect = require('chai').expect;
 
-describe('Groups', () => {
-    
+ describe('Groups', () => {  
     it('Creates a Group', () => {
         browser.url(env.url);
 
@@ -45,9 +44,15 @@ describe('Groups', () => {
         let editGroupForm = groupInfo.editInformation();
         editGroupForm.editFields(editedGroup);
         message = editGroupForm.clickSaveButton();
-        
-        expect(message).to.equal(`${editedGroup} has been saved.`);
+        expect(message).to.equal(`${editedGroup.name} has been saved.`);
 
+    });
+
+    it('Delete a group', () => {
+        let header = new Header();
+        let groups = header.navigateTo('Groups');
+        let dashboard = groups.goToMyGroups();
+        dashboard.deleteGroup();
     });
     
 });

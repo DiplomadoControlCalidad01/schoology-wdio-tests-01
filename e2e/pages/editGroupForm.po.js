@@ -12,7 +12,7 @@ class EditGroupForm  {
         };
 
         Object
-            .keys(group)
+            .keys(newInfo)
             .forEach((field) => {
                 groupSetter[field].call();
             });
@@ -20,7 +20,7 @@ class EditGroupForm  {
     
     clickSaveButton() {
         CommonActions.click('input#edit-submit');
-        confirmationMessage = CommonActions.getText('message-text');
+        let confirmationMessage = CommonActions.getText('.message-text');
         return confirmationMessage;
     }
 
