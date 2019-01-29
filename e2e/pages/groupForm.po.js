@@ -1,4 +1,5 @@
 const CommonActions = require('../core/commonActions');
+const GroupInfo = require('../pages/groupInfo.po');
 
 class GroupForm {
 
@@ -13,6 +14,11 @@ class GroupForm {
             .forEach((field) => {
                 groupSetter[field].call();
             });
+    }
+
+    clickCreateButton() {
+        CommonActions.click('input#edit-submit');
+        return new GroupInfo();
     }
 }
 module.exports = GroupForm;
