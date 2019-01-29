@@ -1,4 +1,6 @@
 const GroupInfo = require('../pages/groupInfo.po');
+const GroupForm = require('../pages/groupForm.po');
+const CommonActions = require('../core/commonActions');
 
 class GroupsDashboard {
 
@@ -8,9 +10,9 @@ class GroupsDashboard {
     }
     viewGroupInfo(groupName)
     {
-        CommonActions.click(``);
+        CommonActions.click(`//a[contains(@class, 'group-title') and text()='${groupName}']`);
         return new GroupInfo();
     }
 
 }
-module.exports = 'GroupsDashboard'
+module.exports = GroupsDashboard;

@@ -6,7 +6,7 @@ class GroupsPreview {
 
     goToMyGroups() {
         CommonActions.click(`a[href = '/groups']`);
-        new GroupsDashboard();
+        return new GroupsDashboard();
     }
 
     createFirstGroup() {

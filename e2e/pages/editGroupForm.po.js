@@ -5,7 +5,7 @@ class EditGroupForm  {
         return CommonActions.getText('#edit-name');
     }
     
-    editForm(newInfo) {
+    editFields(newInfo) {
         const groupSetter = {
             'name': () => CommonActions.setValue('#edit-name', newInfo.name),
             'description': () => CommonActions.setValue('#edit-description', newInfo.description)
