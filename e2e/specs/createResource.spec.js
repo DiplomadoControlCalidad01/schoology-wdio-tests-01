@@ -1,15 +1,20 @@
 const assert = require('assert');
-const credentials = require('../../environment').credentials;
-const Login = require('../pages/login.po');
+const env = require('../../environment');
+const login = require('../pages/login.po');
+const helper = require('../helpers/number.helper');
+const expect = require('chai').expect;
 
-describe('Resource', () => {
-    it('Add Folder resource', () => {
-        browser.url('https://app.schoology.com/login');
+describe('Resources', () => {
+    it('Add Folder resource with required fields', () => {
+        let folder = {
+            'Name': helper.getRandomNumber()
+        };
 
-        let header = Login.loginAs(credentials.teacher.username, credentials.teacher.password);
-        let resources = header.navigateTo('Resources');
-
-        resources.addResource('Add Folder');
-        browser.pause(10000);
+        browser.url(env.url);
+        let header = login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
+        let resources = header.navigateTo('Resources')
+            .addFolder(folder);
+        
+        expect(resources.getToolbarMessage()).to.equal(`${folder.Name} has been successfully created.`);
     });
 });
