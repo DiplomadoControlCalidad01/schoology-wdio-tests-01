@@ -1,25 +1,8 @@
 const CommonActions = require('../core/commonActions');
-const CourseDashboard = require('./courseDashboard.po');
-const EditCourse = require('./editCourse.po.po');
 
-class Courses {
+class EditCourse {
 
-    clickCreateCourseButton(){
-        CommonActions.click(`//a[text()='Create Course']`);
-        return this;
-    }
-
-    clickCreateButton(){
-        CommonActions.click('input#edit-submit');
-        return new CourseDashboard();
-    }
-
-    clickCancelButton(){
-        CommonActions.click(`//a[text()='Cancel']`);
-        return this;
-    }
-
-    fillCreateCourseForm(course){
+    fillEditCourseInfoForm(course){
         let courseSteps = {
             'CourseName': () => CommonActions.setValue('input#edit-course-name', course.CourseName),
             'SectionName': () => CommonActions.setValue('input#edit-section-name-1', course.SectionName),
@@ -31,6 +14,15 @@ class Courses {
         });
         return this;
     }
+
+    clickSaveButton(){
+        CommonActions.click('input#edit-submit');
+        return this;
+    }
+
+    getConfirmationMessage(){
+        return CommonActions.getText('div.message-text');
+    }
 }
 
-module.exports = Courses;
+module.exports = EditCourse;
