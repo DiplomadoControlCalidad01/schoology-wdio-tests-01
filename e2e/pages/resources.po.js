@@ -5,22 +5,21 @@ class Resources {
         CommonActions.click('#toolbar-add');
     }
 
-    getToolbarMessage(){
-        return CommonActions.getText(`.message-text`);
-    }
-
-    clickCreateButton(){
+    clickCreateButton() {
         return CommonActions.click(`input[value='Create']`);
     }
 
-    addFolder(folder){
-        this.clickAddResourceButton()
+    addFolder(folder) {
+        let addFolderForm = '.popups-library-add-folder';
+        
+        this.clickAddResourceButton();
         CommonActions.click('#collection-add-folder a');
+        CommonActions.waitForVisible(addFolderForm);
 
         let folderSteps = {
             'Name': () => CommonActions.setValue("#edit-title", folder.Name),
-            'FolderColor': () => CommonActions.setValue("sd", folder.FolderColor),
-            'Description': () => CommonActions.selectValue("sd", folder.Description)
+            'Color': () => CommonActions.click(`div[data-color=\'${folder.Color}\']`),
+            'Description': () => CommonActions.setValue(`body#tinymce.mceContentBody`, folder.Description)
         };
 
         Object.keys(folder).forEach(key => {
@@ -28,6 +27,7 @@ class Resources {
         });
 
         this.clickCreateButton();
+        CommonActions.waitForVisible('div#collection-toolbar');
         return this;
     }
 }
