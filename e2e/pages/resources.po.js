@@ -5,22 +5,28 @@ class Resources {
         CommonActions.click('#toolbar-add');
     }
 
-    getToolbarMessage(){
-        return CommonActions.getText(`.message-text`);
+    clickCreateButton() {
+        CommonActions.click(`input[value='Create']`);
     }
 
-    clickCreateButton(){
-        return CommonActions.click(`input[value='Create']`);
+    clickAddButton() {
+        CommonActions.click(`input#edit-submit[value='Add']`);
     }
 
-    addFolder(folder){
-        this.clickAddResourceButton()
+    waitForResourcesBarVisible(){
+        CommonActions.waitForVisible('#collection-toolbar');
+    }
+
+    addFolder(folder) {
+        let addFolderForm = '.popups-library-add-folder';
+        
+        this.clickAddResourceButton();
         CommonActions.click('#collection-add-folder a');
+        CommonActions.waitForVisible(addFolderForm);
 
         let folderSteps = {
             'Name': () => CommonActions.setValue("#edit-title", folder.Name),
-            'FolderColor': () => CommonActions.setValue("sd", folder.FolderColor),
-            'Description': () => CommonActions.selectValue("sd", folder.Description)
+            'Color': () => CommonActions.click(`div[data-color=\'${folder.Color}\']`)
         };
 
         Object.keys(folder).forEach(key => {
@@ -28,6 +34,28 @@ class Resources {
         });
 
         this.clickCreateButton();
+        this.waitForResourcesBarVisible();
+        return this;
+    }
+
+    addLink(link) {
+        let addLinkForm = '.popups-box.popups-large.popups-library-add-link';
+
+        this.clickAddResourceButton();
+        CommonActions.click('#collection-add-link');
+        CommonActions.waitForVisible(addLinkForm);
+
+        let linkSteps = {
+            'url': () => CommonActions.setValue("input#edit-link", link.url),
+            'title': () => CommonActions.setValue(`input#edit-link-title`, link.title)
+        };
+
+        Object.keys(link).forEach(key => {
+            linkSteps[key].call();
+        });
+
+        this.clickAddButton();
+        this.waitForResourcesBarVisible();
         return this;
     }
 }
