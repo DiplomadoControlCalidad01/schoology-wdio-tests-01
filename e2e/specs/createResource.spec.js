@@ -11,12 +11,11 @@ describe('Resources', () => {
      * Runs before all tests in this block
      */
     before(function() {
-        browser.url(env.url);
         header = login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
         
       });
 
-    it('Add Folder resource with required fields', () => {
+    it('Confirmation message is displayed when add a folder', () => {
         let folder = {
             'Name': helper.getRandomNumber()
         };
@@ -27,40 +26,27 @@ describe('Resources', () => {
         expect(resources.getToolbarMessage()).to.equal(`${folder.Name} has been successfully created.`);
     });
 
-    it('Add Folder resource with color as green', () => {
+    it('Confirmation message is displayed when add a folder with green color', () => {
         let folder = {
             'Name': helper.getRandomNumber(),
             'Color': 'green'
         };
-        
+
         let resources = header.navigateTo('Resources')
             .addFolder(folder);
 
         expect(header.getConfirmationMessage()).to.equal(`${folder.Name} has been successfully created.`);
     });
 
-    it('Add Folder resource with color as gray', () => {
-        let folder = {
-            'Name': helper.getRandomNumber(),
-            'Color': 'gray'
+    it('Confirmation message is displayed when add a link', () => {
+        let link = {
+            'url': 'https://www.google.com/',
+            'title': 'google'
         };
-        
+
         let resources = header.navigateTo('Resources')
-            .addFolder(folder);
+            .addLink(link);
 
-        expect(header.getConfirmationMessage()).to.equal(`${folder.Name} has been successfully created.`);
-    });
-
-    it('Add Folder resource with all fields populated', () => {
-        let folder = {
-            'Name': helper.getRandomNumber(),
-            'Color': 'black',
-            //'Description': 'This is the description'
-        };
-        
-        let resources = header.navigateTo('Resources')
-            .addFolder(folder);
-
-        expect(header.getConfirmationMessage()).to.equal(`${folder.Name} has been successfully created.`);
+        expect(header.getConfirmationMessage()).to.equal(`The link has been successfully added.`);
     });
 });

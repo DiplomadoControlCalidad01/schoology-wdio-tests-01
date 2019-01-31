@@ -9,6 +9,14 @@ class Resources {
         return CommonActions.click(`input[value='Create']`);
     }
 
+    clickAddButton() {
+        return CommonActions.click(`input#edit-submit[value='Add']`);
+    }
+
+    waitForResourcesBarVisible(){
+        CommonActions.waitForVisible('#collection-toolbar');
+    }
+
     addFolder(folder) {
         let addFolderForm = '.popups-library-add-folder';
         
@@ -18,8 +26,7 @@ class Resources {
 
         let folderSteps = {
             'Name': () => CommonActions.setValue("#edit-title", folder.Name),
-            'Color': () => CommonActions.click(`div[data-color=\'${folder.Color}\']`),
-            'Description': () => CommonActions.setValue(`body#tinymce.mceContentBody`, folder.Description)
+            'Color': () => CommonActions.click(`div[data-color=\'${folder.Color}\']`)
         };
 
         Object.keys(folder).forEach(key => {
@@ -27,7 +34,28 @@ class Resources {
         });
 
         this.clickCreateButton();
-        CommonActions.waitForVisible('div#collection-toolbar');
+        this.waitForResourcesBarVisible();
+        return this;
+    }
+
+    addLink(link) {
+        let addLinkForm = '.popups-box.popups-large.popups-library-add-link';
+
+        this.clickAddResourceButton();
+        CommonActions.click('#collection-add-link');
+        CommonActions.waitForVisible(addLinkForm);
+
+        let linkSteps = {
+            'url': () => CommonActions.setValue("input#edit-link", link.url),
+            'title': () => CommonActions.setValue(`input#edit-link-title`, link.title)
+        };
+
+        Object.keys(link).forEach(key => {
+            linkSteps[key].call();
+        });
+
+        this.clickAddButton();
+        this.waitForResourcesBarVisible();
         return this;
     }
 }
