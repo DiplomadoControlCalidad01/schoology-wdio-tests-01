@@ -3,14 +3,29 @@ const env = require('../../environment');
 const expect = require('chai').expect;
 
 describe('Edit Course', () => {
-    it('it should be possible to edit a course\'s info', () => {
 
-        let course = {
-            'CourseName': 'Test 101',
-            'SectionName': 'Section 1',
-            'SubjectArea': 'Technology',
-            'Level' : 'None'
-        };
+    let header;
+    let courseDashboard;
+    let course = {
+        'CourseName': 'Test 201',
+        'SectionName': 'Section 1',
+        'SubjectArea': 'Technology',
+        'Level' : 'None'
+    };
+
+    before(() => {
+        header = login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
+
+    });
+
+    beforeEach(() => {
+        courseDashboard = header.navigateTo('Courses')
+            .clickCreateCourseButton()
+            .fillCreateCourseForm(course)
+            .clickCreateButton();
+    });
+
+    it('it should be possible to edit a course', () => {
 
         let updatedCourse = {
             'CourseName': 'Other Name',
@@ -19,17 +34,11 @@ describe('Edit Course', () => {
             'Level' : 'None'
         };
 
-        browser.url(env.url);
-        let header = login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
-        let editCourse = header.navigateTo('Courses')
-            .clickCreateCourseButton()
-            .fillCreateCourseForm(course)
-            .clickCreateButton()
-            .clickCourseOptions()
+        let editCourse = courseDashboard.clickCourseOptions()
             .clickEditInfoLink()
             .fillEditCourseInfoForm(updatedCourse)
             .clickSaveButton();
 
-        expect(editCourse.getConfirmationMessage()).to.equal('The section has been updated.');
+        expect(header.getConfirmationMessage()).to.equal('The section has been updated.');
     });
 });

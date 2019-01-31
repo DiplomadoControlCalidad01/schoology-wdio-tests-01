@@ -1,4 +1,5 @@
 const CommonActions = require('../core/commonActions');
+const EditCourse = require('./editCourse.po');
 
 class CourseDashboard {
 

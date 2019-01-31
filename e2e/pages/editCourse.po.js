@@ -19,10 +19,6 @@ class EditCourse {
         CommonActions.click('input#edit-submit');
         return this;
     }
-
-    getConfirmationMessage(){
-        return CommonActions.getText('div.message-text');
-    }
 }
 
 module.exports = EditCourse;

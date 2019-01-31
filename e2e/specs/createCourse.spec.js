@@ -3,6 +3,13 @@ const env = require('../../environment');
 const expect = require('chai').expect;
 
 describe('Create Course', () => {
+
+    let header;
+
+    before(() => {
+        header = login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
+    });
+
     it('it should be possible to create a course', () => {
 
         let course = {
@@ -12,8 +19,6 @@ describe('Create Course', () => {
             'Level' : 'None'
         };
 
-        browser.url(env.url);
-        let header = login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
         let courseDashboard = header.navigateTo('Courses')
             .clickCreateCourseButton()
             .fillCreateCourseForm(course)
