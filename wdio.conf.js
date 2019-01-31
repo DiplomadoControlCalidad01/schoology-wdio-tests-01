@@ -201,8 +201,10 @@ exports.config = {
      * Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) ends.
      * @param {Object} test test details
      */
-    // afterTest: function (test) {
-    // },
+     afterTest: function (test) {
+        //Added 2 seconds since just 15 request can be done within 5 seconds in Schoology platform
+        browser.pause(2000);
+     },
     /**
      * Hook that gets executed after the suite has ended
      * @param {Object} suite suite details
