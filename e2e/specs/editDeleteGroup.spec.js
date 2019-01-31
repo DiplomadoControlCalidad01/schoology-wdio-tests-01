@@ -11,7 +11,7 @@ const expect = require('chai').expect;
     };
     before(() => {
         browser.url(env.url);
-        
+
         // Create a Group
         header = Login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
         let groups = header.navigateTo('Groups');
@@ -41,7 +41,6 @@ const expect = require('chai').expect;
     });
 
     it('Delete a group', () => {
-        let header = new Header();
         let groups = header.navigateTo('Groups');
         let dashboard = groups.goToMyGroups();
         dashboard.deleteGroup();
