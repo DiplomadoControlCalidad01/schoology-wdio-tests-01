@@ -12,7 +12,6 @@ describe('Resources', () => {
      */
     before(function() {
         header = login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
-        
       });
 
     it('Confirmation message is displayed when add a folder', () => {

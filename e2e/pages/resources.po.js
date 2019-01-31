@@ -6,11 +6,11 @@ class Resources {
     }
 
     clickCreateButton() {
-        return CommonActions.click(`input[value='Create']`);
+        CommonActions.click(`input[value='Create']`);
     }
 
     clickAddButton() {
-        return CommonActions.click(`input#edit-submit[value='Add']`);
+        CommonActions.click(`input#edit-submit[value='Add']`);
     }
 
     waitForResourcesBarVisible(){
