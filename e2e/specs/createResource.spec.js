@@ -22,7 +22,7 @@ describe('Resources', () => {
         let resources = header.navigateTo('Resources')
             .addFolder(folder);
 
-        expect(resources.getToolbarMessage()).to.equal(`${folder.Name} has been successfully created.`);
+        expect(header.getConfirmationMessage()).to.equal(`${folder.Name} has been successfully created.`);
     });
 
     it('Confirmation message is displayed when add a folder with green color', () => {
