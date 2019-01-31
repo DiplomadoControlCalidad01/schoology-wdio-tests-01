@@ -58,5 +58,31 @@ class Resources {
         this.waitForResourcesBarVisible();
         return this;
     }
+
+    addTestQuiz(quiz) {
+        let addTestQuizForm = '.popups-library-add-template.assessment';
+
+        this.clickAddResourceButton();
+        CommonActions.click('#collection-add-assessment');
+        CommonActions.waitForVisible(addTestQuizForm);
+
+        let quizSteps = {
+            'name': () => CommonActions.setValue("input#edit-link", link.url),
+            'maxPoints': () => CommonActions.setValue(`input#edit-link-title`, link.title),
+            'resourceNotes': () => CommonActions.setValue(`input#edit-link-title`, link.title),
+            'level': () => CommonActions.setValue(`input#edit-link-title`, link.title),
+            'resourceTypes': () => CommonActions.setValue(`input#edit-link-title`, link.title),
+            'optionsName': () => CommonActions.setValue(`input#edit-link-title`, link.title),
+        };
+
+        Object.keys(link).forEach(key => {
+            quizSteps[key].call();
+        });
+
+        this.clickAddButton();
+        this.waitForResourcesBarVisible();
+        return this;
+    }
+
 }
 module.exports = Resources;
