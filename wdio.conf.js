@@ -202,6 +202,7 @@ exports.config = {
      * @param {Object} test test details
      */
      afterTest: function (test) {
+        //Added 2 seconds since just 15 request can be done within 5 seconds in Schoology platform
         browser.pause(2000);
      },
     /**
