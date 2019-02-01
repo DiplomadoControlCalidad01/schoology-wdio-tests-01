@@ -20,5 +20,9 @@ class Header {
     clickMyCoursesLink(){
         CommonActions.click(`a[href='/courses']`);
     }
+
+    getConfirmationMessage(){
+        return CommonActions.getText(`.message-text`);
+    }
 }
 module.exports = Header;
