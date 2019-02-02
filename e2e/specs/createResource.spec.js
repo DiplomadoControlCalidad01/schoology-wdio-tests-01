@@ -2,6 +2,7 @@ const assert = require('assert');
 const env = require('../../environment');
 const login = require('../pages/login.po');
 const helper = require('../helpers/number.helper');
+const feature = require('../core/constants').feature;
 const expect = require('chai').expect;
 
 describe('Resources', () => {
@@ -14,38 +15,64 @@ describe('Resources', () => {
         header = login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
       });
 
-    it('Confirmation message is displayed when add a folder', () => {
+    it('#BVT Correct confirmation message is displayed when add a folder', () => {
         let folder = {
-            'Name': helper.getRandomNumber()
+            'Name': 'folder' + helper.getRandomNumber()
         };
         
-        let resources = header.navigateTo('Resources')
+        let resources = header.navigateTo(feature.RESOURCES)
             .addFolder(folder);
 
         expect(header.getConfirmationMessage()).to.equal(`${folder.Name} has been successfully created.`);
     });
 
-    it('Confirmation message is displayed when add a folder with green color', () => {
-        let folder = {
-            'Name': helper.getRandomNumber(),
-            'Color': 'green'
-        };
-
-        let resources = header.navigateTo('Resources')
-            .addFolder(folder);
-
-        expect(header.getConfirmationMessage()).to.equal(`${folder.Name} has been successfully created.`);
-    });
-
-    it('Confirmation message is displayed when add a link', () => {
+    it('#BVT Confirmation message is displayed when add a link', () => {
         let link = {
             'url': 'https://www.google.com/',
             'title': 'google'
         };
 
-        let resources = header.navigateTo('Resources')
+        let resources = header.navigateTo(feature.RESOURCES)
             .addLink(link);
 
         expect(header.getConfirmationMessage()).to.equal(`The link has been successfully added.`);
+    });
+
+    it('#Aceptance Correct confirmation message is displayed when add a folder with green color', () => {
+        let folder = {
+            'Name': 'folder' + helper.getRandomNumber(),
+            'Color': 'green'
+        };
+
+        let resources = header.navigateTo(feature.RESOURCES)
+            .addFolder(folder);
+
+        expect(header.getConfirmationMessage()).to.equal(`${folder.Name} has been successfully created.`);
+    });
+
+    it('#BVT Correct confirmation message is displayed when add a Test/Quiz with required fields', () => {
+        let quiz = {
+            'name': 'Quiz' + helper.getRandomNumber()
+        };
+
+        let quizPage = header.navigateTo(feature.RESOURCES)
+            .addTestQuiz(quiz);
+
+        expect(quizPage.getPageTitle()).to.equal(quiz.name);
+    });
+
+    it('#Aceptance Correct confirmation message is displayed when add a Test/Quiz with all fields', () => {
+        let quiz = {
+            'name': 'Quiz' + helper.getRandomNumber(),
+            'maxPoints': '80',
+            'resourceNotes': 'Resource notes',
+            'level': 'None',
+            'resourceTypes': 'Activity'
+        };
+
+        let quizPage = header.navigateTo(feature.RESOURCES)
+        .addTestQuiz(quiz);
+
+        expect(quizPage.getPageTitle()).to.equal(quiz.name);
     });
 });

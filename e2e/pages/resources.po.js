@@ -1,16 +1,14 @@
 const CommonActions = require('../core/commonActions');
+const button = require('../core/constants').button;
+const TestQuiz = require('../pages/testquiz.po');
 
 class Resources {
     clickAddResourceButton() {
         CommonActions.click('#toolbar-add');
     }
 
-    clickCreateButton() {
-        CommonActions.click(`input[value='Create']`);
-    }
-
-    clickAddButton() {
-        CommonActions.click(`input#edit-submit[value='Add']`);
+    clickButton(button) {
+        CommonActions.click(`input#edit-submit[value='${button}']`);
     }
 
     waitForResourcesBarVisible(){
@@ -33,7 +31,7 @@ class Resources {
             folderSteps[key].call();
         });
 
-        this.clickCreateButton();
+        this.clickButton(button.CREATE);
         this.waitForResourcesBarVisible();
         return this;
     }
@@ -53,8 +51,8 @@ class Resources {
         Object.keys(link).forEach(key => {
             linkSteps[key].call();
         });
-
-        this.clickAddButton();
+        
+        this.clickButton(button.ADD);
         this.waitForResourcesBarVisible();
         return this;
     }
@@ -67,21 +65,25 @@ class Resources {
         CommonActions.waitForVisible(addTestQuizForm);
 
         let quizSteps = {
-            'name': () => CommonActions.setValue("input#edit-link", link.url),
-            'maxPoints': () => CommonActions.setValue(`input#edit-link-title`, link.title),
-            'resourceNotes': () => CommonActions.setValue(`input#edit-link-title`, link.title),
-            'level': () => CommonActions.setValue(`input#edit-link-title`, link.title),
-            'resourceTypes': () => CommonActions.setValue(`input#edit-link-title`, link.title),
-            'optionsName': () => CommonActions.setValue(`input#edit-link-title`, link.title),
+            'name': () => CommonActions.setValue("#edit-template-fields-title", quiz.name),
+            'maxPoints': () => CommonActions.setValue(`#edit-template-fields-max-points`, quiz.maxPoints),
+            'resourceNotes': () => this.fillResourceNotes(quiz.resourceNotes),
+            'level': () => CommonActions.selectValue(`#edit-grade-level-range-start`, quiz.level),
+            'resourceTypes': () => CommonActions.selectValue(`#edit-use-category`, quiz.resourceTypes)            
         };
 
-        Object.keys(link).forEach(key => {
+        Object.keys(quiz).forEach(key => {
             quizSteps[key].call();
         });
 
-        this.clickAddButton();
+        this.clickButton(button.SUBMIT);
         this.waitForResourcesBarVisible();
-        return this;
+        return new TestQuiz();
+    }
+
+    fillResourceNotes(resourceNotes){
+        CommonActions.click('#resource-info-selector');
+        CommonActions.setValue(`textarea#edit-description`, resourceNotes);
     }
 
 }
