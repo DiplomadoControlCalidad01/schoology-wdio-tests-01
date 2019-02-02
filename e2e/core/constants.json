@@ -1,0 +1,12 @@
+{
+  "button" : {
+    "SUBMIT" : "Submit",
+    "ADD" : "Add",
+    "CREATE" : "Create"
+  },
+  "feature" : {
+    "RESOURCES" : "Resources",
+    "COURCES" : "Courses",
+    "GROUPS" : "Groups"
+  }
+}
