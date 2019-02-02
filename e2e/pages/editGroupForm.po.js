@@ -5,7 +5,7 @@ class EditGroupForm  {
         return CommonActions.getText('#edit-name');
     }
     
-    editFields(newInfo) {
+    fillEditGroupInfoForm(newInfo) {
         const groupSetter = {
             'name': () => CommonActions.setValue('#edit-name', newInfo.name),
             'description': () => CommonActions.setValue('#edit-description', newInfo.description)
@@ -20,8 +20,6 @@ class EditGroupForm  {
     
     clickSaveButton() {
         CommonActions.click('input#edit-submit');
-        let confirmationMessage = CommonActions.getText('.message-text');
-        return confirmationMessage;
     }
 
 }

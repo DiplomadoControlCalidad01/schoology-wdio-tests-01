@@ -3,7 +3,7 @@ const EditGroupForm = require('./editGroupForm.po');
 
 class GroupInfo {
 
-    editInformation() {
+    clickEditLink() {
         CommonActions.click(`.left-block-edit`);
         return new EditGroupForm();
     }

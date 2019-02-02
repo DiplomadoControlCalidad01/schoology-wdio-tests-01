@@ -10,21 +10,20 @@ const expect = require('chai').expect;
         description: 'Test Description'
     };
     before(() => {
-        browser.url(env.url);
-
-        // Create a Group
         header = Login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
+    });
+
+    beforeEach(() => {
+        // Create Group
         let groups = header.navigateTo('Groups');
         let dashboard = groups.goToMyGroups();
-        let groupForm = dashboard.createGroup();
+        let groupForm = dashboard.clickCreateGroupButton();
         groupForm.fillForm(group);
         
         let groupInfo = groupForm.clickCreateButton();
     });
 
     it('Edit the name of a Group', () => {
-        browser.url(env.url);
-
         let groups = header.navigateTo('Groups');
 
         const editedGroup = {
@@ -32,10 +31,11 @@ const expect = require('chai').expect;
             description: 'New Description'
         };
         let dashboard = groups.goToMyGroups();
-        let groupInfo = dashboard.viewGroupInfo(group.name);
-        let editGroupForm = groupInfo.editInformation();
-        editGroupForm.editFields(editedGroup);
-        message = editGroupForm.clickSaveButton();
+        let groupInfo = dashboard.clickGroupInfo(group.name);
+        let editGroupForm = groupInfo.clickEditLink();
+        editGroupForm.fillEditGroupInfoForm(editedGroup);
+        editGroupForm.clickSaveButton();
+        message = header.getConfirmationMessage();
         expect(message).to.equal(`${editedGroup.name} has been saved.`);
 
     });
@@ -43,7 +43,10 @@ const expect = require('chai').expect;
     it('Delete a group', () => {
         let groups = header.navigateTo('Groups');
         let dashboard = groups.goToMyGroups();
-        dashboard.deleteGroup();
+        dashboard.deleteGroup(group.name);
+        let deletedGroups = dashboard.clickDeletedGroupsLink();
+        let exists = deletedGroups.isDeletedGroupExisting(group.name);
+        expect(exists).to.equal(true);
     });
-    
+
 });

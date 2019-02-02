@@ -24,5 +24,9 @@ class CommonActions{
         this.waitForVisible(locator);
         return browser.element(locator).getText();
     }
+
+    static isExisting(locator) {
+        return browser.isExisting(locator);
+    }
 }
 module.exports = CommonActions;

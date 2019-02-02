@@ -15,7 +15,7 @@ const expect = require('chai').expect;
         let header = Login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
         let groups = header.navigateTo('Groups');
         let dashboard = groups.goToMyGroups();
-        let groupForm = dashboard.createGroup();
+        let groupForm = dashboard.clickCreateGroupButton();
         groupForm.fillForm(group);
         
         let groupInfo = groupForm.clickCreateButton();

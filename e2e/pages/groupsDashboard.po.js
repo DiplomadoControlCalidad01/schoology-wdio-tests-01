@@ -1,24 +1,32 @@
 const GroupInfo = require('../pages/groupInfo.po');
 const GroupForm = require('../pages/groupForm.po');
+const DeletedGroups = require('../pages/deletedGroups.po');
 const CommonActions = require('../core/commonActions');
 
 class GroupsDashboard {
 
-    createGroup() {
-        CommonActions.click(`a[href='/groups/new']`);
+    clickCreateGroupButton() {
+        CommonActions.click('a[href="/groups/new"]');
         return new GroupForm();
     }
 
-    viewGroupInfo(groupName)
+    clickGroupInfo(groupName)
     {
         CommonActions.click(`//a[contains(@class, 'group-title') and text()='${groupName}']`);
         return new GroupInfo();
     }
 
-    deleteGroup() {
-        CommonActions.click('.action-links-unfold-text');
-        CommonActions.click(`//a[contains(@id, 'action-delete')]`);
+    deleteGroup(groupName) {
+        CommonActions.click(`//a[contains(@class, 'group-title') and text()='${groupName}']/ancestor::li/descendant::span[contains(@class,'action-links-unfold-text')]`);
+        CommonActions.click(`//a[contains(@class, 'group-title') and text()='${groupName}']/ancestor::li/descendant::a[contains(@id, 'action-delete')]`);
         CommonActions.click('#edit-submit');
+        browser.waitForVisible('#popups-overlay', 30000, true);
     }
+
+    clickDeletedGroupsLink() {
+        CommonActions.click('a[href="/groups/deleted"]');
+        return new DeletedGroups();
+    }
+
 }
 module.exports = GroupsDashboard;

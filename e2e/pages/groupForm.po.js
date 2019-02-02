@@ -18,6 +18,7 @@ class GroupForm {
 
     clickCreateButton() {
         CommonActions.click('input#edit-submit');
+        browser.waitForVisible('#popups-overlay', 30000, true);
         return new GroupInfo();
     }
 }
