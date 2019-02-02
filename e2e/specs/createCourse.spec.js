@@ -1,6 +1,7 @@
 const login = require('../pages/login.po');
 const env = require('../../environment');
 const expect = require('chai').expect;
+const feature = require('../core/constants').feature;
 
 describe('Create Course', () => {
 
@@ -19,7 +20,7 @@ describe('Create Course', () => {
             'Level' : 'None'
         };
 
-        let courseDashboard = header.navigateTo('Courses')
+        let courseDashboard = header.navigateTo(feature.COURSES)
             .clickCreateCourseButton()
             .fillCreateCourseForm(course)
             .clickCreateButton();

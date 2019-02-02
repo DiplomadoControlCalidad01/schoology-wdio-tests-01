@@ -1,8 +1,9 @@
 const login = require('../pages/login.po');
 const env = require('../../environment');
 const expect = require('chai').expect;
+const feature = require('../core/constants').feature;
 
-describe('Edit Course', () => {
+describe('Edit and remove a course', () => {
 
     let header;
     let courseDashboard;
@@ -19,7 +20,7 @@ describe('Edit Course', () => {
     });
 
     beforeEach(() => {
-        courseDashboard = header.navigateTo('Courses')
+        courseDashboard = header.navigateTo(feature.COURSES)
             .clickCreateCourseButton()
             .fillCreateCourseForm(course)
             .clickCreateButton();
@@ -29,9 +30,7 @@ describe('Edit Course', () => {
 
         let updatedCourse = {
             'CourseName': 'Other Name',
-            'SectionName': 'Other Section',
-            'SubjectArea': 'Technology',
-            'Level' : 'None'
+            'SectionName': 'Other Section'
         };
 
         let editCourse = courseDashboard.clickCourseOptions()
@@ -40,5 +39,7 @@ describe('Edit Course', () => {
             .clickSaveButton();
 
         expect(header.getConfirmationMessage()).to.equal('The section has been updated.');
+        expect(editCourse.getCourseNameValue()).to.equal(updatedCourse.CourseName);
+        expect(editCourse.getSectionNameValue()).to.equal(updatedCourse.SectionName);
     });
 });

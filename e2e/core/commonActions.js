@@ -24,5 +24,10 @@ class CommonActions{
         this.waitForVisible(locator);
         return browser.element(locator).getText();
     }
+
+    static getValue(locator){
+        this.waitForVisible(locator);
+        return browser.element(locator).getValue();
+    }
 }
 module.exports = CommonActions;
