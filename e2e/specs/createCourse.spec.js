@@ -1,8 +1,16 @@
 const login = require('../pages/login.po');
 const env = require('../../environment');
 const expect = require('chai').expect;
+const feature = require('../core/constants').feature;
 
 describe('Create Course', () => {
+
+    let header;
+
+    before(() => {
+        header = login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
+    });
+
     it('it should be possible to create a course', () => {
 
         let course = {
@@ -12,9 +20,7 @@ describe('Create Course', () => {
             'Level' : 'None'
         };
 
-        browser.url(env.url);
-        let header = login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
-        let courseDashboard = header.navigateTo('Courses')
+        let courseDashboard = header.navigateTo(feature.COURSES)
             .clickCreateCourseButton()
             .fillCreateCourseForm(course)
             .clickCreateButton();

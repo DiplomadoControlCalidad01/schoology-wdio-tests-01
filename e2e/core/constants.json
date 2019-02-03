@@ -6,7 +6,7 @@
   },
   "feature" : {
     "RESOURCES" : "Resources",
-    "COURCES" : "Courses",
+    "COURSES" : "Courses",
     "GROUPS" : "Groups"
   }
 }
