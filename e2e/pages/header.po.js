@@ -5,6 +5,7 @@ const Courses = require('../pages/courses.po');
 
 class Header {
     navigateTo(item) {
+        
         CommonActions.click(`//div[@id='header']/descendant::*[text()=\'${item}\']`);
         switch (item) {
             case 'Resources':
