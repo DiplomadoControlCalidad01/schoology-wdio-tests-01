@@ -1,6 +1,6 @@
 const env = require('../../environment');
 const Login = require('../pages/login.po');
-const Header = require('../pages/header.po');
+const feature = require('../core/constants').feature;
 const expect = require('chai').expect;
 
  describe('Groups', () => { 
@@ -15,7 +15,7 @@ const expect = require('chai').expect;
 
     beforeEach(() => {
         // Create Group
-        let groups = header.navigateTo('Groups');
+        let groups = header.navigateTo(feature.GROUPS);
         let dashboard = groups.goToMyGroups();
         let groupForm = dashboard.clickCreateGroupButton();
         groupForm.fillForm(group);
@@ -23,8 +23,8 @@ const expect = require('chai').expect;
         let groupInfo = groupForm.clickCreateButton();
     });
 
-    it('Edit the name of a Group', () => {
-        let groups = header.navigateTo('Groups');
+    it('#Acceptance It should be possible to edit the name and description of a group', () => {
+        let groups = header.navigateTo(feature.GROUPS);
 
         const editedGroup = {
             name: 'New Group Name',
@@ -40,8 +40,8 @@ const expect = require('chai').expect;
 
     });
 
-    it('Delete a group', () => {
-        let groups = header.navigateTo('Groups');
+    it('#Acceptance It should be possible to delete a group', () => {
+        let groups = header.navigateTo(feature.GROUPS);
         let dashboard = groups.goToMyGroups();
         dashboard.deleteGroup(group.name);
         let deletedGroups = dashboard.clickDeletedGroupsLink();

@@ -1,10 +1,10 @@
 const env = require('../../environment');
 const Login = require('../pages/login.po');
-const Header = require('../pages/header.po');
+const feature = require('../core/constants').feature;
 const expect = require('chai').expect;
 
  describe('Groups', () => { 
-    it('Creates a Group', () => {
+    it('#BVT It should be possible to create a group', () => {
         browser.url(env.url);
 
         const group = {
@@ -13,7 +13,7 @@ const expect = require('chai').expect;
         };
 
         let header = Login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
-        let groups = header.navigateTo('Groups');
+        let groups = header.navigateTo(feature.GROUPS);
         let dashboard = groups.goToMyGroups();
         let groupForm = dashboard.clickCreateGroupButton();
         groupForm.fillForm(group);
