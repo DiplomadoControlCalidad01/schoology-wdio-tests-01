@@ -16,9 +16,9 @@ const expect = require('chai').expect;
         let groups = header.navigateTo(feature.GROUPS);
         let dashboard = groups.goToMyGroups();
         let groupForm = dashboard.clickCreateGroupButton();
-        groupForm.fillForm(group);
-        
+        groupForm.fillForm(group);        
         let groupInfo = groupForm.clickCreateButton();
+        
         expect(groupInfo.getTitle()).to.equal(group.name);
 
     }); 
