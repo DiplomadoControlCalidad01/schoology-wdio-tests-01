@@ -20,7 +20,7 @@ describe('Resources', () => {
             'Name': 'folder' + helper.getRandomNumber()
         };
         
-        let resources = header.navigateTo(feature.RESOURCES)
+        header.navigateTo(feature.RESOURCES)
             .addFolder(folder);
 
         expect(header.getConfirmationMessage()).to.equal(`${folder.Name} has been successfully created.`);
@@ -32,7 +32,7 @@ describe('Resources', () => {
             'title': 'google'
         };
 
-        let resources = header.navigateTo(feature.RESOURCES)
+        header.navigateTo(feature.RESOURCES)
             .addLink(link);
 
         expect(header.getConfirmationMessage()).to.equal(`The link has been successfully added.`);
@@ -44,13 +44,13 @@ describe('Resources', () => {
             'Color': 'green'
         };
 
-        let resources = header.navigateTo(feature.RESOURCES)
+        header.navigateTo(feature.RESOURCES)
             .addFolder(folder);
 
         expect(header.getConfirmationMessage()).to.equal(`${folder.Name} has been successfully created.`);
     });
 
-    it('#BVT Correct confirmation message is displayed when add a Test/Quiz with required fields', () => {
+    it('#BVT Test/Quiz can be added successfully with required fields', () => {
         let quiz = {
             'name': 'Quiz' + helper.getRandomNumber()
         };
@@ -61,7 +61,7 @@ describe('Resources', () => {
         expect(quizPage.getPageTitle()).to.equal(quiz.name);
     });
 
-    it('#Aceptance Correct confirmation message is displayed when add a Test/Quiz with all fields', () => {
+    it('#Aceptance Test/Quiz can be added successfully with all fields', () => {
         let quiz = {
             'name': 'Quiz' + helper.getRandomNumber(),
             'maxPoints': '80',
