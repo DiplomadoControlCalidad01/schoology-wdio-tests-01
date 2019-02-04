@@ -29,5 +29,13 @@ class CommonActions{
         this.waitForVisible(locator);
         return browser.element(locator).getValue();
     }
+
+    static isExisting(locator) {
+        return browser.isExisting(locator);
+    }
+
+    static waitForInvisible(locator){
+        browser.waitForVisible(locator, env.timeout.explicit, true);
+    }
 }
 module.exports = CommonActions;
