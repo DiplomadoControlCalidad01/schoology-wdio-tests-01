@@ -44,7 +44,7 @@ describe('Edit and remove a course', () => {
     it('it should be possible to delete a course', () => {
         let courses = header.navigateTo(feature.COURSES)
             .deleteCourse(course.CourseName);
-        expect(courses.getDeleteConfirmationMessage()).to.equal(`Section ${course.SectionName} has been deleted.`);
+        expect(courses.getConfirmationMessage()).to.equal(`Section ${course.SectionName} has been deleted.`);
 
         let deletedCourses = courses.clickDeletedCoursesLink();
         expect(deletedCourses.isCourseExisting(course.CourseName, course.SectionName)).to.be.true;

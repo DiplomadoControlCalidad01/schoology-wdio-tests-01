@@ -40,7 +40,7 @@ class Courses {
         return this;
     }
 
-    getDeleteConfirmationMessage(){
+    getConfirmationMessage(){
         return CommonActions.getText('div.message-text');
     }
 
