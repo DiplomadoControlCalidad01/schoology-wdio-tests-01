@@ -45,8 +45,8 @@ const expect = require('chai').expect;
         let dashboard = groups.goToMyGroups();
         dashboard.deleteGroup(group.name);
         let deletedGroups = dashboard.clickDeletedGroupsLink();
-        let exists = deletedGroups.isDeletedGroupExisting(group.name);
-        expect(exists).to.equal(true);
+        let isGroupDeleted = deletedGroups.isDeletedGroupExisting(group.name);
+        expect(isGroupDeleted).to.be.true;
     });
 
 });
