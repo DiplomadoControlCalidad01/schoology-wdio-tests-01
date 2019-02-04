@@ -25,7 +25,7 @@ describe('Edit and remove a course', () => {
             .clickCreateButton();
     });
 
-    xit('it should be possible to edit a course', () => {
+    it('it should be possible to edit a course', () => {
         let updatedCourse = {
             'CourseName': 'Other Name',
             'SectionName': 'Other Section'
