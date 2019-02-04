@@ -1,5 +1,6 @@
 const CommonActions = require('../core/commonActions');
 const CourseDashboard = require('./courseDashboard.po');
+const DeletedCourses = require('./deletedCourses.po');
 
 class Courses {
 
@@ -10,6 +11,7 @@ class Courses {
 
     clickCreateButton(){
         CommonActions.click('input#edit-submit');
+        CommonActions.waitForInvisible('div#popups-overlay');
         return new CourseDashboard();
     }
 
@@ -29,6 +31,22 @@ class Courses {
             courseSteps[key].call();
         });
         return this;
+    }
+
+    deleteCourse(courseName){
+        CommonActions.click(`//span[@class='course-title' and text()='${courseName}']/ancestor::li/descendant::span[contains(@class, 'action-links-unfold-text')]`);
+        CommonActions.click(`//span[@class='course-title' and text()='${courseName}']/ancestor::li/descendant::a[text()='Delete']`);
+        CommonActions.click('input#edit-submit');
+        return this;
+    }
+
+    getConfirmationMessage(){
+        return CommonActions.getText('div.message-text');
+    }
+
+    clickDeletedCoursesLink(){
+        CommonActions.click('a[href="/courses/deleted"]');
+        return new DeletedCourses();
     }
 }
 
