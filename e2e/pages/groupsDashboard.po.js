@@ -20,7 +20,7 @@ class GroupsDashboard {
         CommonActions.click(`//a[contains(@class, 'group-title') and text()='${groupName}']/ancestor::li/descendant::span[contains(@class,'action-links-unfold-text')]`);
         CommonActions.click(`//a[contains(@class, 'group-title') and text()='${groupName}']/ancestor::li/descendant::a[contains(@id, 'action-delete')]`);
         CommonActions.click('#edit-submit');
-        browser.waitForVisible('#popups-overlay', 30000, true);
+        CommonActions.waitForInvisible('#popups-overlay');
     }
 
     clickDeletedGroupsLink() {
