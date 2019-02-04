@@ -19,8 +19,7 @@ const expect = require('chai').expect;
         let dashboard = groups.goToMyGroups();
         let groupForm = dashboard.clickCreateGroupButton();
         groupForm.fillForm(group);
-        
-        let groupInfo = groupForm.clickCreateButton();
+        groupForm.clickCreateButton();
     });
 
     it('#Acceptance It should be possible to edit the name and description of a group', () => {
