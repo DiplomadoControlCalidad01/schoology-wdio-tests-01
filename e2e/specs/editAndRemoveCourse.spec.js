@@ -16,7 +16,6 @@ describe('Edit and remove a course', () => {
 
     before(() => {
         header = login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
-
     });
 
     beforeEach(() => {
@@ -26,8 +25,7 @@ describe('Edit and remove a course', () => {
             .clickCreateButton();
     });
 
-    it('it should be possible to edit a course', () => {
-
+    xit('it should be possible to edit a course', () => {
         let updatedCourse = {
             'CourseName': 'Other Name',
             'SectionName': 'Other Section'
@@ -41,5 +39,14 @@ describe('Edit and remove a course', () => {
         expect(header.getConfirmationMessage()).to.equal('The section has been updated.');
         expect(editCourse.getCourseNameValue()).to.equal(updatedCourse.CourseName);
         expect(editCourse.getSectionNameValue()).to.equal(updatedCourse.SectionName);
+    });
+
+    it('it should be possible to delete a course', () => {
+        let courses = header.navigateTo(feature.COURSES)
+            .deleteCourse(course.CourseName);
+        expect(courses.getDeleteConfirmationMessage()).to.equal(`Section ${course.SectionName} has been deleted.`);
+
+        let deletedCourses = courses.clickDeletedCoursesLink();
+        expect(deletedCourses.isCourseExisting(course.CourseName, course.SectionName)).to.be.true;
     });
 });
