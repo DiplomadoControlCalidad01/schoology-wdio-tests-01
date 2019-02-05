@@ -25,7 +25,7 @@ describe('Edit and remove a course', () => {
             .clickCreateButton();
     });
 
-    it('it should be possible to edit a course', () => {
+    it('#Acceptance It should be possible to edit a course', () => {
         let updatedCourse = {
             'CourseName': 'Other Name',
             'SectionName': 'Other Section'
@@ -41,12 +41,13 @@ describe('Edit and remove a course', () => {
         expect(editCourse.getSectionNameValue()).to.equal(updatedCourse.SectionName);
     });
 
-    it('it should be possible to delete a course', () => {
+    it('#Acceptance It should be possible to delete a course', () => {
         let courses = header.navigateTo(feature.COURSES)
             .deleteCourse(course.CourseName);
         expect(courses.getConfirmationMessage()).to.equal(`Section ${course.SectionName} has been deleted.`);
 
         let deletedCourses = courses.clickDeletedCoursesLink();
-        expect(deletedCourses.isCourseExisting(course.CourseName, course.SectionName)).to.be.true;
+        let isCourseDeleted = deletedCourses.isDeletedCourseExisting(course.CourseName, course.SectionName);
+        expect(isCourseDeleted).to.be.true;
     });
 });

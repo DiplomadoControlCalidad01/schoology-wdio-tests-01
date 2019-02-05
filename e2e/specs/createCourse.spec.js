@@ -11,7 +11,7 @@ describe('Create Course', () => {
         header = login.loginAs(env.credentials.teacher.username, env.credentials.teacher.password);
     });
 
-    it('it should be possible to create a course', () => {
+    it('#BVT It should be possible to create a course', () => {
 
         let course = {
             'CourseName': 'Test 101',
